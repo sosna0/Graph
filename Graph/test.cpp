@@ -1,8 +1,12 @@
 #include <iostream>
 #include "GraphAsMatrix.h"
+#include "DFS.h"
 
+#define TEST 1
 
 int main() {
+
+#if TEST == 1
 
 	GraphAsMatrix graph(10, true);	//powtórzyc dla grafu nieskierowanego
 
@@ -18,12 +22,8 @@ int main() {
 
 	//------------------------------------------------
 	graph.AddEdge(1, 2); std::cout << "AddEdge(1, 2)" << std::endl;
-	
-	//graph.AddEdge(1, 0); std::cout << "AddEdge(1, 0)" << std::endl;
-	//graph.AddEdge(1, 7); std::cout << "AddEdge(1, 7)" << std::endl;
-	//graph.AddEdge(6, 2); std::cout << "AddEdge(6, 2)" << std::endl;
-	
 	graph.AddEdge(1, 2); std::cout << "AddEdge(1, 2)" << std::endl;
+
 	graph.AddEdge(2, 3); std::cout << "AddEdge(2, 3)" << std::endl;
 	graph.AddEdge(3, 4); std::cout << "AddEdge(3, 4)" << std::endl;
 	graph.AddEdge(9, 9); std::cout << "AddEdge(9, 9)" << std::endl << std::endl;
@@ -45,9 +45,10 @@ int main() {
 	std::cout << "Number of vertices: " << graph.NumberOfVertices() << std::endl;
 	std::cout << "Number of edges: " << graph.NumberOfEdges() << std::endl << std::endl;
 
-	std::cout << "Is Edge(1, 1): " << std::boolalpha << graph.IsEdge(1, 1) << std::endl;
-	std::cout << "Is Edge(1, 2): " << std::boolalpha << graph.IsEdge(1, 2) << std::endl;
-	std::cout << "Is Edge(2, 1): " << std::boolalpha << graph.IsEdge(2, 1) << std::endl << std::endl;
+	std::cout << std::boolalpha;
+	std::cout << "Is Edge(1, 1): " << graph.IsEdge(1, 1) << std::endl;
+	std::cout << "Is Edge(1, 2): " << graph.IsEdge(1, 2) << std::endl;
+	std::cout << "Is Edge(2, 1): " << graph.IsEdge(2, 1) << std::endl << std::endl;
 
 
 	//------------------------------------------------
@@ -130,5 +131,32 @@ int main() {
 	}
 	delete& incIter;
 	std::cout << std::endl << std::endl;
+
+
+#elif TEST == 2
+
+	GraphAsMatrix* graph = new GraphAsMatrix(10, false);
+
+	graph->AddEdge(0, 1);
+	graph->AddEdge(1, 2);
+	graph->AddEdge(2, 3);
+	graph->AddEdge(3, 4);
+	graph->AddEdge(3, 7);
+	graph->AddEdge(4, 5);
+	graph->AddEdge(5, 9);
+	graph->AddEdge(9, 9);
+	graph->AddEdge(6, 8);
+	graph->AddEdge(8, 6);
+	graph->AddEdge(0, 8);
+	
+	//graph->AddEdge(0, 3);	//dane ze strony www.programiz.com/dsa/graph-dfs 
+	//graph->AddEdge(0, 2);
+	//graph->AddEdge(0, 1);
+	//graph->AddEdge(1, 2);
+	//graph->AddEdge(2, 4);
+
+	graph->DFS(graph->SelectVertex(0));
+
+#endif
 
 }

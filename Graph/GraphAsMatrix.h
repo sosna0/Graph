@@ -15,6 +15,7 @@ private:
 
 public:
 	GraphAsMatrix(int n, bool b);
+	~GraphAsMatrix();
 	int NumberOfVertices();
 	bool IsDirected();
 	int NumberOfEdges();
@@ -23,6 +24,9 @@ public:
 	void AddEdge(int u, int v);
 	Edge* SelectEdge(int u, int v);
 	Vertex* SelectVertex(int v);
+
+	void DFS(Vertex* v);
+	void DFS1(Vertex* v, std::vector<bool>& visited);
 
 
 	class AllVerticesIter: public Iterator<Vertex>{
@@ -140,6 +144,12 @@ public:
 	Iterator<Edge>& IncidentEdgesIter(int v){ return *new InciEdgesIter(*this, v); }
 };
 
+GraphAsMatrix::~GraphAsMatrix() {
+	for (int i = 0; i < numberOfVertices; i++) {
+		delete vertices[i];
+	}
+	//usuwaæ macierz s¹siedztwa
+}
 
 GraphAsMatrix::GraphAsMatrix(int n, bool b)
 	:isDirected(b), numberOfVertices(n), vertices(n), adjacencyMatrix(n), numberOfEdges(0) {
