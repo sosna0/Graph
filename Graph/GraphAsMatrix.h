@@ -196,7 +196,7 @@ void GraphAsMatrix::AddEdge(int u, int v){
 			}
 		}
 		else {
-			if (adjacencyMatrix[u][v] == NULL && adjacencyMatrix[v][u]) {
+			if (adjacencyMatrix[u][v] == NULL && adjacencyMatrix[v][u] == NULL) {
 				numberOfEdges += 2;
 				adjacencyMatrix[u][v] = new Edge(vertices[u], vertices[v]);
 				adjacencyMatrix[v][u] = new Edge(vertices[v], vertices[u]);

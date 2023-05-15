@@ -2,7 +2,7 @@
 #include "GraphAsMatrix.h"
 #include "DFS.h"
 
-#define TEST 2 //1 lub 2
+#define TEST 1 //1 lub 2
 
 int main() {
 
