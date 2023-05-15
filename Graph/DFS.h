@@ -25,12 +25,14 @@ void GraphAsMatrix::DFS1(Vertex* v, std::vector<bool>& visited) {
 	auto& emIter = this->EmanatingEdgesIter(v->Number());
 
 	while (!emIter.IsDone()) {
-		auto edge = *emIter;
+		auto& edge = *emIter;
+
+		if (&edge == nullptr) { return; } //zabezpieczenie przed sytuacj¹, gdy nie ma ¿adnych krawêdzi id¹cych od wierzcho³ka
 
 		if (visited[edge.V1()->Number()] == false) {
 			DFS1(edge.V1(), visited);
 		}
-		
+
 		++emIter;
 	}
 	delete& emIter;

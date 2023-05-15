@@ -10,13 +10,17 @@ public:
 	int weight;
 	std::string label;
 	Edge(Vertex* V0, Vertex* V1);
+	Edge(const Edge& edge);
+
 	Vertex* Mate(Vertex* v);
-	Vertex* V0() { return v0; };
-	Vertex* V1() { return v1; };
+	Vertex* V0() const{ return v0; };
+	Vertex* V1() const{ return v1; };
 	friend bool operator<=(Edge& e1, Edge& e2);
 };
 
 Edge::Edge(Vertex* V0, Vertex* V1):v0(V0), v1(V1), weight(0) {}
+
+Edge::Edge(const Edge& e) :v0(e.V0()), v1(e.V1()), weight(e.weight), label(e.label) {}
 
 Vertex* Edge::Mate(Vertex* v) {
 	if (v->Number() == v0->Number()) { return v1; }
