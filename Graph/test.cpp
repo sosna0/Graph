@@ -2,7 +2,7 @@
 #include "GraphAsMatrix.h"
 #include "DFS.h"
 
-#define TEST 1 //1 lub 2
+#define TEST 2 //1 lub 2
 
 int main() {
 
@@ -135,7 +135,7 @@ int main() {
 
 #elif TEST == 2
 
-	GraphAsMatrix* graph = new GraphAsMatrix(10, false);
+	GraphAsMatrix* graph = new GraphAsMatrix(10, true);
 
 	graph->AddEdge(0, 1);
 	graph->AddEdge(1, 2);
