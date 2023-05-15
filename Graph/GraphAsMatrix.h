@@ -93,7 +93,7 @@ public:
 			for (int i = 0; i < owner.NumberOfVertices(); i++) {
 				col++;
 				if (IsDone()) { return; }
-				if (owner.IsEdge(row, col) != NULL) { return; }
+				if (owner.IsEdge(row, col)) { return; }
 			}
 		}
 
@@ -196,7 +196,7 @@ void GraphAsMatrix::AddEdge(int u, int v){
 			}
 		}
 		else {
-			if (adjacencyMatrix[u][v] == NULL) {
+			if (adjacencyMatrix[u][v] == NULL && adjacencyMatrix[v][u]) {
 				numberOfEdges += 2;
 				adjacencyMatrix[u][v] = new Edge(vertices[u], vertices[v]);
 				adjacencyMatrix[v][u] = new Edge(vertices[v], vertices[u]);

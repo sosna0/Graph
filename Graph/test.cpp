@@ -2,7 +2,7 @@
 #include "GraphAsMatrix.h"
 #include "DFS.h"
 
-#define TEST 1
+#define TEST 2 //1 lub 2
 
 int main() {
 
@@ -70,7 +70,7 @@ int main() {
 	auto& vertIter = graph.VerticesIter();
 
 	while (!vertIter.IsDone()) {
-		auto curr_vert = *vertIter;
+		auto& curr_vert = *vertIter;
 		std::cout << "Vertex number: " << curr_vert.Number() << " ";
 		std::cout << "weight: " << curr_vert.weight << std::endl;
 		++vertIter;
@@ -91,7 +91,7 @@ int main() {
 	auto& edgeIter = graph.EdgesIter();
 
 	while (!edgeIter.IsDone()) {
-		auto edge = *edgeIter;
+		auto& edge = *edgeIter;
 
 		std::cout << "Edge(" << edge.V0()->Number() << ", " << edge.V1()->Number() << ")" << std::endl;
 
@@ -107,7 +107,7 @@ int main() {
 	auto& emIter = graph.EmanatingEdgesIter(vertex_nr);
 
 	while (!emIter.IsDone()) {
-		auto edge = *emIter;
+		auto& edge = *emIter;
 
 		std::cout << "Edge(" << edge.V0()->Number() << ", " << edge.V1()->Number() << ")" << std::endl;
 
@@ -123,7 +123,7 @@ int main() {
 	auto& incIter = graph.IncidentEdgesIter(vertex_nr);
 
 	while (!incIter.IsDone()) {
-		auto edge = *incIter;
+		auto& edge = *incIter;
 
 		std::cout << "Edge(" << edge.V0()->Number() << ", " << edge.V1()->Number() << ")" << std::endl;
 
@@ -149,13 +149,15 @@ int main() {
 	graph->AddEdge(8, 6);
 	graph->AddEdge(0, 8);
 	
-	//graph->AddEdge(0, 3);	//dane ze strony www.programiz.com/dsa/graph-dfs 
+	//graph->AddEdge(0, 3);	//dane ze strony www.programiz.com/dsa/graph-dfs  graph - 5
 	//graph->AddEdge(0, 2);
 	//graph->AddEdge(0, 1);
 	//graph->AddEdge(1, 2);
 	//graph->AddEdge(2, 4);
 
 	graph->DFS(graph->SelectVertex(0));
+
+	delete graph;
 
 #endif
 
