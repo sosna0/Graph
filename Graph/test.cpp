@@ -154,9 +154,15 @@ int main() {
 	//graph->AddEdge(0, 1);
 	//graph->AddEdge(1, 2);
 	//graph->AddEdge(2, 4);
+	
+	
+	//graph->DFS(graph->SelectVertex(0));
 
-	graph->DFS(graph->SelectVertex(0));
-
+	CountingVisitor *vis = new CountingVisitor;
+	graph->DFS_vis(vis, graph->SelectVertex(0));
+	//std::cout << "Number of vertiecies: " << vis->GetSum() << std::endl;
+	
+	delete vis;
 	delete graph;
 
 #endif

@@ -2,6 +2,7 @@
 
 #include <vector>
 #include "Vertex.h"
+#include "CountingVisitor.h"
 #include "Edge.h"
 #include "Iterator.h"
 
@@ -27,6 +28,9 @@ public:
 
 	void DFS(Vertex* v);
 	void DFS1(Vertex* v, std::vector<bool>& visited);
+
+	void DFS_vis(Visitor<int>* vis, Vertex* v);
+	void DFS1_vis(Visitor<int>* vis, Vertex* v, std::vector<bool>& visited);
 
 
 	class AllVerticesIter: public Iterator<Vertex>{
