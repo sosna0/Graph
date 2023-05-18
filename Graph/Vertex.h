@@ -8,11 +8,7 @@ private:
 public:
 	int weight;
 	std::string label;
-	Vertex(int n);
-	int Number() const;
+	Vertex(int n):number(n), weight(0){}
+	int Number() const { return number; }
 };
-
-Vertex::Vertex(int n):number(n), weight(0) {}
-
-int Vertex::Number() const { return number; }
 

@@ -1,9 +1,16 @@
 #pragma once
 
 #include <vector>
+
 #include "Vertex.h"
 #include "Edge.h"
+
+#include "Visitor.h"
+#include "CountingVisitor.h"
 #include "Iterator.h"
+
+class CountingVisitor;
+
 
 class GraphAsMatrix{
 private:
@@ -27,6 +34,44 @@ public:
 
 	void DFS(Vertex* v);
 	void DFS1(Vertex* v, std::vector<bool>& visited);
+
+	void DFS_vis(Visitor<int>* vis, Vertex* v);
+	void DFS1_vis(Visitor<int>* vis, Vertex* v, std::vector<bool>& visited);
+
+	bool IsConnected() {
+
+		CountingVisitor* vis = new CountingVisitor;
+
+		if (!this->IsDirected()) {
+
+			DFS_vis(vis, SelectVertex(0));
+
+			int sum = vis->GetSum();
+			delete vis;
+
+			if (sum == NumberOfVertices()) { return true; }
+			else { return false; }
+
+		}
+
+		else {
+
+			for (int i = 0; i < NumberOfVertices(); i++) {
+
+				DFS_vis(vis, SelectVertex(i));
+				if (vis->GetSum() != NumberOfVertices()) {
+					delete vis;
+					return false;
+				}
+
+			}
+
+			delete vis;
+			return true;
+
+		}
+
+	}
 
 
 	class AllVerticesIter: public Iterator<Vertex>{
