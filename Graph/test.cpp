@@ -1,8 +1,10 @@
 #include <iostream>
 #include "GraphAsMatrix.h"
+#include "CountingVisitor.h"
+#include "WritingVisitor.h"
 #include "DFS.h"
 
-#define TEST 2 //1 lub 2
+#define TEST 1 //1, 2, 3 lub 4
 
 int main() {
 
@@ -135,34 +137,93 @@ int main() {
 
 #elif TEST == 2
 
+	GraphAsMatrix* graph = new GraphAsMatrix(10, false);
+
+	graph->AddEdge(0, 1);	std::cout << "AddEdge(0, 1)" << std::endl;
+	graph->AddEdge(1, 2);	std::cout << "AddEdge(1, 2)" << std::endl;
+	graph->AddEdge(2, 3);	std::cout << "AddEdge(2, 3)" << std::endl;
+	graph->AddEdge(3, 4);	std::cout << "AddEdge(3, 4)" << std::endl;
+	graph->AddEdge(3, 7);	std::cout << "AddEdge(3, 7)" << std::endl;
+	//graph->AddEdge(4, 5);	std::cout << "AddEdge(4, 5)" << std::endl;
+	graph->AddEdge(5, 9);	std::cout << "AddEdge(5, 9)" << std::endl;
+	graph->AddEdge(9, 9);	std::cout << "AddEdge(9, 9)" << std::endl;
+	graph->AddEdge(6, 8);	std::cout << "AddEdge(6, 8)" << std::endl;
+	graph->AddEdge(8, 6);	std::cout << "AddEdge(8, 6)" << std::endl;
+	//graph->AddEdge(0, 8);	std::cout << "AddEdge(0, 8)" << std::endl;
+
+		
+	std::cout << "\nDFS: " << std::endl;
+	graph->DFS(graph->SelectVertex(0));
+
+
+	std::cout << "\nWritingVisitor: \n";
+	WritingVisitor* vis1 = new WritingVisitor;
+	graph->DFS_vis(vis1, graph->SelectVertex(0));
+
+
+	std::cout << "\nCountingVisitor: \n";
+	CountingVisitor *vis2 = new CountingVisitor;
+	graph->DFS_vis(vis2, graph->SelectVertex(0));
+	std::cout << "Number of vertiecies: " << vis2->GetSum() << std::endl;
+
+
+	delete vis1;
+	delete vis2;
+	delete graph;
+
+#elif TEST == 3
+
+	GraphAsMatrix* graph = new GraphAsMatrix(10, false);
+	std::cout << "Graph is not directed" << std::endl;
+
+	graph->AddEdge(0, 1);	std::cout << "AddEdge(0, 1)" << std::endl;
+	graph->AddEdge(1, 2);	std::cout << "AddEdge(1, 2)" << std::endl;
+	graph->AddEdge(2, 3);	std::cout << "AddEdge(2, 3)" << std::endl;
+	graph->AddEdge(3, 4);	std::cout << "AddEdge(3, 4)" << std::endl;
+	graph->AddEdge(3, 7);	std::cout << "AddEdge(3, 7)" << std::endl;
+	graph->AddEdge(4, 5);	std::cout << "AddEdge(4, 5)" << std::endl;
+	graph->AddEdge(5, 9);	std::cout << "AddEdge(5, 9)" << std::endl;
+	graph->AddEdge(9, 9);	std::cout << "AddEdge(9, 9)" << std::endl;
+	graph->AddEdge(6, 8);	std::cout << "AddEdge(6, 8)" << std::endl;
+	graph->AddEdge(8, 6);	std::cout << "AddEdge(8, 6)" << std::endl;
+
+	std::cout << std::boolalpha;
+	std::cout << "\nGraph is connected: " << graph->IsConnected() << std::endl;
+
+	graph->AddEdge(0, 8);	std::cout << "\nAddEdge(0, 8)" << std::endl;
+
+	std::cout << "\nGraph is connected: " << graph->IsConnected() << std::endl;
+
+	
+	delete graph;
+
+#elif TEST == 4
+
 	GraphAsMatrix* graph = new GraphAsMatrix(10, true);
+	std::cout << "Graph is directed" << std::endl;
 
-	graph->AddEdge(0, 1);
-	graph->AddEdge(1, 2);
-	graph->AddEdge(2, 3);
-	graph->AddEdge(3, 4);
-	graph->AddEdge(3, 7);
-	graph->AddEdge(4, 5);
-	graph->AddEdge(5, 9);
-	graph->AddEdge(9, 9);
-	graph->AddEdge(6, 8);
-	graph->AddEdge(8, 6);
-	graph->AddEdge(0, 8);
-	
-	//graph->AddEdge(0, 3);	//dane ze strony www.programiz.com/dsa/graph-dfs  graph - 5
-	//graph->AddEdge(0, 2);
-	//graph->AddEdge(0, 1);
-	//graph->AddEdge(1, 2);
-	//graph->AddEdge(2, 4);
-	
-	
-	//graph->DFS(graph->SelectVertex(0));
+	graph->AddEdge(0, 1);	std::cout << "AddEdge(0, 1)" << std::endl;
+	graph->AddEdge(1, 2);	std::cout << "AddEdge(1, 2)" << std::endl;
+	graph->AddEdge(2, 3);	std::cout << "AddEdge(2, 3)" << std::endl;
+	graph->AddEdge(3, 4);	std::cout << "AddEdge(3, 4)" << std::endl;
+	graph->AddEdge(3, 7);	std::cout << "AddEdge(3, 7)" << std::endl;
+	graph->AddEdge(4, 5);	std::cout << "AddEdge(4, 5)" << std::endl;
+	graph->AddEdge(5, 9);	std::cout << "AddEdge(5, 9)" << std::endl;
+	graph->AddEdge(9, 9);	std::cout << "AddEdge(9, 9)" << std::endl;
+	graph->AddEdge(6, 8);	std::cout << "AddEdge(6, 8)" << std::endl;
+	graph->AddEdge(8, 6);	std::cout << "AddEdge(8, 6)" << std::endl;
+	graph->AddEdge(0, 8);	std::cout << "AddEdge(0, 8)" << std::endl;
+	graph->AddEdge(6, 0);	std::cout << "AddEdge(6, 0)" << std::endl;
+	graph->AddEdge(9, 0);	std::cout << "AddEdge(9, 0)" << std::endl;
 
-	CountingVisitor *vis = new CountingVisitor;
-	graph->DFS_vis(vis, graph->SelectVertex(0));
-	//std::cout << "Number of vertiecies: " << vis->GetSum() << std::endl;
+	std::cout << std::boolalpha;
+	std::cout << "\nGraph is strongly connected: " << graph->IsConnected() << std::endl;
+
+	graph->AddEdge(7, 0);	std::cout << "\nAddEdge(7, 0)" << std::endl;
+
+	std::cout << "\nGraph is strongly connected: " << graph->IsConnected() << std::endl;
+
 	
-	delete vis;
 	delete graph;
 
 #endif

@@ -8,18 +8,8 @@ class CountingVisitor : public Visitor<int> {
 private:
 	int count = 0;
 public:
-	void Visit(int &element);
+	void Visit(int& element) { count++; }
 	int GetSum() { return count; }
 	bool IsDone() const { return false; }
-	void SetAll();
-
+	void SetAll() { count = 0; }	
 };
-
-
-void CountingVisitor::Visit(int& element) {
-	count++;
-}
-
-void CountingVisitor::SetAll() {
-	count = 0;
-}
