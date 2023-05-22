@@ -9,7 +9,6 @@
 #include "CountingVisitor.h"
 #include "Iterator.h"
 
-class CountingVisitor;
 
 
 class GraphAsMatrix{
