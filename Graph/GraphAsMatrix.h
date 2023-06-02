@@ -72,6 +72,10 @@ public:
 
 	}
 
+	std::vector<int> DFS_Spanning_Tree(Vertex* v);
+	void DFS_Spanning_Tree_1(Vertex* v, std::vector<bool>& visited, std::vector<int>& parent);
+
+
 
 	class AllVerticesIter: public Iterator<Vertex>{
 	private:
