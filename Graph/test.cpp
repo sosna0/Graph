@@ -4,7 +4,7 @@
 #include "WritingVisitor.h"
 #include "DFS.h"
 
-#define TEST 1 //1, 2, 3 lub 4
+#define TEST 2 //1, 2, 3, 4 lub 5
 
 int main() {
 
@@ -225,6 +225,38 @@ int main() {
 
 	
 	delete graph;
+
+
+#elif TEST == 5
+
+	GraphAsMatrix* graph = new GraphAsMatrix(10, false);
+	//std::cout << "Graph is not directed" << std::endl;
+
+	graph->AddEdge(0, 1);	std::cout << "AddEdge(0, 1)" << std::endl;
+	graph->AddEdge(1, 2);	std::cout << "AddEdge(1, 2)" << std::endl;
+	graph->AddEdge(2, 3);	std::cout << "AddEdge(2, 3)" << std::endl;
+	graph->AddEdge(3, 4);	std::cout << "AddEdge(3, 4)" << std::endl;
+	graph->AddEdge(3, 7);	std::cout << "AddEdge(3, 7)" << std::endl;
+	graph->AddEdge(4, 5);	std::cout << "AddEdge(4, 5)" << std::endl;
+	graph->AddEdge(5, 9);	std::cout << "AddEdge(5, 9)" << std::endl;
+	graph->AddEdge(9, 9);	std::cout << "AddEdge(9, 9)" << std::endl;
+	graph->AddEdge(6, 8);	std::cout << "AddEdge(6, 8)" << std::endl;
+	graph->AddEdge(8, 6);	std::cout << "AddEdge(8, 6)" << std::endl;
+	graph->AddEdge(0, 8);	std::cout << "AddEdge(0, 8)" << std::endl;
+
+	graph->AddEdge(3, 9);	std::cout << "AddEdge(3, 9)" << std::endl;
+	graph->AddEdge(5, 7);	std::cout << "AddEdge(5, 7)" << std::endl;
+	graph->AddEdge(9, 8);	std::cout << "AddEdge(9, 8)" << std::endl;
+
+	std::cout << "\n";
+	
+	auto vec = graph->DFS_Spanning_Tree(graph->SelectVertex(0));
+	for (int i = 1; i < vec.size(); i++) {
+		std::cout << "Edge: " << vec[i] << " " << i << std::endl;
+	}
+
+	std::cout << "\n";
+
 
 #endif
 
